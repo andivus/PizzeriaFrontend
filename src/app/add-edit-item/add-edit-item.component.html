@@ -1,0 +1,53 @@
+<div mat-dialog-title> {{ data ? "Редагування товару #" + data.id : "Створення товару" }}</div>
+
+  <form [formGroup]="itemForm">
+  <div mat-dialog-content class="content">
+
+    <div class="row">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>Назва товару</mat-label>
+        <input matInput #name maxlength="128" type="text" placeholder="Pizza Tower" formControlName="name" required>
+        <mat-hint align="end">{{name.value.length}}/128</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>Опис товару</mat-label>
+        <textarea matInput #description placeholder="Доволі крутий товар, спробуйте! 😎" maxlength="2048" formControlName="description" required></textarea>
+        <mat-hint align="end">{{description.value.length}}/2048</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>Посилання на зображення</mat-label>
+        <input matInput type="text" placeholder="https://site.com/image.png" formControlName="imageUrl" required>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>Ціна</mat-label>
+        <span matTextPrefix>₴&nbsp;</span>
+        <input matInput type="number" placeholder="0.00" min="0" step="0.01" formControlName="price" required>
+      </mat-form-field>
+
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>Кількість</mat-label>
+        <input matInput type="number" placeholder="0" min="0" formControlName="stock" required>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-slide-toggle formControlName="isActive">Відображати для користувачів</mat-slide-toggle>
+    </div>
+
+  </div>
+
+  <div mat-dialog-actions class="action">
+    <button mat-raised-button (click)="onNoClick()" type="button">Скасувати</button>
+    <button mat-raised-button color="primary" type="submit" (click)="onSubmitClick()">Зберегти</button>
+  </div>
+
+</form>
