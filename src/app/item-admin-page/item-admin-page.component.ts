@@ -8,6 +8,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ItemService} from "../service/item.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ItemUserDialogComponent} from "../item-user-dialog/item-user-dialog.component";
+import {UtilsService} from "../service/utils.service";
 
 @Component({
   selector: 'app-item-admin-page',
@@ -26,6 +27,7 @@ export class ItemAdminPageComponent {
     private _dialog: MatDialog,
     private _itemService: ItemService,
     private _snackBar: MatSnackBar,
+    public _utilsService: UtilsService
   ) {}
 
   ngOnInit(): void {

@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ItemService} from "../service/item.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import ItemDTO from "../model/item-dto";
@@ -30,7 +30,6 @@ export class ItemAddEditDialogComponent implements OnInit {
       stock: 0,
     })
   }
-
   ngOnInit() {
     this.itemForm.patchValue(this.data)
   }

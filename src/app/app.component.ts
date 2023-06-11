@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {CartDialogComponent} from "./cart-dialog/cart-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {CartService} from "./service/cart.service";
@@ -28,7 +28,7 @@ export class AppComponent {
       return
     }
     this._dialog.open(CartDialogComponent, {
-      width: '800px'
+      width: '900px'
     })
   }
 }

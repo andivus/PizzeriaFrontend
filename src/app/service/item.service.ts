@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +9,7 @@ import {Observable} from "rxjs";
 export class ItemService {
   constructor(private _http: HttpClient) { }
 
-  //TODO: move url to config )*)_)*)
-
-  urlString = 'http://localhost:8080/api/items'
+  urlString = `${environment.apiUrl}/items`
 
   headers = {
     headers: new HttpHeaders().set('Content-Type', 'application/json')

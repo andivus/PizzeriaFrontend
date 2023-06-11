@@ -4,6 +4,7 @@ import {ItemService} from "../service/item.service";
 import {ItemUserDialogComponent} from "../item-user-dialog/item-user-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {CartService} from "../service/cart.service";
+import {UtilsService} from "../service/utils.service";
 
 @Component({
   selector: 'app-item-menu',
@@ -17,7 +18,8 @@ export class ItemMenuComponent {
   constructor(
     private _itemService: ItemService,
     private _dialog: MatDialog,
-    public _cartService: CartService
+    public _cartService: CartService,
+    public _utilsService: UtilsService
   ) {
   }
 

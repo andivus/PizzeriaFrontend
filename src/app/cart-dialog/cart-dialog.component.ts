@@ -4,6 +4,8 @@ import {CartService} from "../service/cart.service";
 import ItemDTO from "../model/item-dto";
 import {ItemService} from "../service/item.service";
 import {toNumbers} from "@angular/compiler-cli/src/version_helpers";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {UtilsService} from "../service/utils.service";
 
 @Component({
   selector: 'app-cart-dialog',
@@ -23,6 +25,8 @@ export class CartDialogComponent {
     public dialogRef: MatDialogRef<CartDialogComponent>,
     public _cartService: CartService,
     public _itemService: ItemService,
+    private _snackBar: MatSnackBar,
+    public _utilsService: UtilsService
   ) {
   }
 
@@ -33,8 +37,20 @@ export class CartDialogComponent {
     itemIds.forEach(id => {
       this._itemService.getItem(Number (id)).subscribe({
         next: (val: ItemDTO) => {
+          if (!val.isActive || val.stock == 0) {
+            this._cartService.removeFullFromCart(val.id)
+            this._snackBar.open("Деякі товари з вашої корзини закінчились та були видалені з вашої корзини", "Окей", {
+              duration: 10000
+            })
+            return
+          }
+          if (val.stock < cart[val.id]) {
+            this._cartService.setToCart(val.id, val.stock)
+            this._snackBar.open("Деяких товарів з вашої корзини нема у такій кількості", "Окей", {
+              duration: 10000
+            })
+          }
           this.dataSource.push(val)
-          console.log(this.dataSource)
         },
         error: console.error
       })

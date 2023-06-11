@@ -33,9 +33,21 @@ export class CartService {
     return cartString ? JSON.parse(cartString) : {};
   }
 
+  getItemAmount(id: number): any {
+    const cart = this.getCart();
+    if (cart[id] == null) return
+    return cart[id];
+  }
+
   isInCart(itemId: number): boolean {
     const cart = this.getCart();
     return cart[itemId] != null
+  }
+
+  setToCart(itemId: number, amount: number) {
+    const cart = this.getCart();
+    cart[itemId] = amount
+    this.saveCart(cart);
   }
 
   private saveCart(cart: { [itemId: number]: number }): void {

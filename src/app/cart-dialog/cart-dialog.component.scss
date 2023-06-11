@@ -1,6 +1,5 @@
-.example-card {
-  max-width: 400px;
-
+.card {
+  width: 420px;
 }
 
 button {
@@ -9,8 +8,40 @@ button {
 
 img {
   object-fit: cover;
-  background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.franchiseinfo.ca%2Fwp-content%2Fuploads%2F2018%2F04%2FPizza_Pizza_Limited_Pepperoni_Smile_Pizzas_return_to_Pizza_Pizza.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
   border: 0;
+}
+
+.amount {
+  display: flex;
+  align-items: flex-end;
+  width: fit-content;
+  flex-direction: row;
+}
+
+.title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 24ch;
+  overflow: hidden;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .price {
+    text-align: left;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  overflow-y: scroll;
+  max-height: 70vh;
+  padding: 16px 0;
 }

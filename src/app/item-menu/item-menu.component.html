@@ -9,7 +9,7 @@
           data.stock <= 3 ? 'Закінчується! В наявності: ' + data.stock : 'В наявності: ' + data.stock.toLocaleString() }}
         </mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src='{{data.imageUrl}}' alt="">
+      <img mat-card-image src='{{data.imageUrl}}' alt="" (error)="_utilsService.handleImageError($event)">
       <mat-card-content>
         <p class="description">
           {{data.description}}

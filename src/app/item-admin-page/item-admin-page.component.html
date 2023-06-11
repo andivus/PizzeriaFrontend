@@ -14,7 +14,7 @@
 
       <ng-container matColumnDef="image">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Зображення</th>
-        <td mat-cell *matCellDef="let row"> <img src="{{row.imageUrl}}" alt="-" width="64" height="64"> </td>
+        <td mat-cell *matCellDef="let row"> <img src="{{row.imageUrl}}" alt="-" width="64" height="64" (error)="_utilsService.handleImageError($event)"> </td>
       </ng-container>
 
       <ng-container matColumnDef="name">
