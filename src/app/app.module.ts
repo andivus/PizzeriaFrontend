@@ -9,10 +9,9 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
-import { EditItemComponent } from './edit-item/edit-item.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatInputModule} from "@angular/material/input";
-import { AddEditItemComponent } from './add-edit-item/add-edit-item.component';
+import { ItemAddEditDialogComponent } from './item-add-edit-dialog/item-add-edit-dialog.component';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatChipsModule} from "@angular/material/chips";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -21,12 +20,20 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
+import { ItemAdminPageComponent } from './item-admin-page/item-admin-page.component';
+import { ItemUserDialogComponent } from './item-user-dialog/item-user-dialog.component';
+import { ItemMenuComponent } from './item-menu/item-menu.component';
+import {MatCardModule} from "@angular/material/card";
+import { CartDialogComponent } from './cart-dialog/cart-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EditItemComponent,
-    AddEditItemComponent
+    ItemAddEditDialogComponent,
+    ItemAdminPageComponent,
+    ItemUserDialogComponent,
+    ItemMenuComponent,
+    CartDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +58,8 @@ import {MatSortModule} from "@angular/material/sort";
     MatSnackBarModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

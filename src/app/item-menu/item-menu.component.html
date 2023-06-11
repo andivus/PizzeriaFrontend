@@ -1,0 +1,36 @@
+<div class="cards">
+  <div *ngFor="let data of dataSource">
+    <mat-card class="card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title class="card-header">{{ data.name }}</mat-card-title>
+        <mat-card-subtitle>
+          #{{ data.id }} | {{ data.stock == 0 ? "Наразі цей товар відсутній! 😦" :
+          data.stock <= 3 ? 'Закінчується! В наявності: ' + data.stock : 'В наявності: ' + data.stock.toLocaleString() }}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src='{{data.imageUrl}}' alt="">
+      <mat-card-content>
+        <p class="description">
+          {{data.description}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+
+        <button mat-icon-button (click)="openItemUserDialog(data)">
+          <mat-icon>info</mat-icon>
+        </button>
+
+        <span class="spacer"></span>
+
+        <span>₴ {{data.price.toLocaleString()}}</span>
+        <button mat-icon-button [disabled]='data.stock == 0'
+                (click)="_cartService.isInCart(data.id) ? _cartService.removeFullFromCart(data.id) : _cartService.addOneToCart(data.id)">
+          <mat-icon>{{_cartService.isInCart(data.id) ? 'remove_shopping_cart' : 'shopping_cart'}}</mat-icon>
+        </button>
+
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+</div>

@@ -6,16 +6,16 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import ItemDTO from "../model/item-dto";
 
 @Component({
-  selector: 'app-add-edit-item',
-  templateUrl: './add-edit-item.component.html',
-  styleUrls: ['./add-edit-item.component.scss']
+  selector: 'app-item-add-edit-dialog',
+  templateUrl: './item-add-edit-dialog.component.html',
+  styleUrls: ['./item-add-edit-dialog.component.scss']
 })
-export class AddEditItemComponent implements OnInit {
+export class ItemAddEditDialogComponent implements OnInit {
 
   itemForm: FormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<AddEditItemComponent>,
+    public dialogRef: MatDialogRef<ItemAddEditDialogComponent>,
     private _fb: FormBuilder,
     private _itemService: ItemService,
     private _snackBar: MatSnackBar,
@@ -63,7 +63,7 @@ export class AddEditItemComponent implements OnInit {
           });
         },
         error: (val: any) => {
-          this._snackBar.open(`Виникла помилка при оновлені товару #${val.id}!`, 'Окей', {
+          this._snackBar.open(`Виникла помилка при оновлені товару!`, 'Окей', {
             duration: 5000
           });
           console.error(val)

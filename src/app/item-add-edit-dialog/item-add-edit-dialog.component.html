@@ -14,8 +14,8 @@
     <div class="row">
       <mat-form-field floatLabel="always" appearance="outline">
         <mat-label>Опис товару</mat-label>
-        <textarea matInput #description placeholder="Доволі крутий товар, спробуйте! 😎" maxlength="2048" formControlName="description" required></textarea>
-        <mat-hint align="end">{{description.value.length}}/2048</mat-hint>
+        <textarea matInput #description placeholder="Доволі крутий товар, спробуйте! 😎" maxlength="10240" formControlName="description" required></textarea>
+        <mat-hint align="end">{{description.value.length}}/10240</mat-hint>
       </mat-form-field>
     </div>
 
@@ -30,12 +30,14 @@
       <mat-form-field floatLabel="always" appearance="outline">
         <mat-label>Ціна</mat-label>
         <span matTextPrefix>₴&nbsp;</span>
-        <input matInput type="number" placeholder="0.00" min="0" step="0.01" formControlName="price" required>
+        <input matInput type="number" placeholder="0.00" min="0" step="0.01" max="2000000000" formControlName="price" required>
+        <mat-hint align="end">Макс. ₴ 2 000 000 000</mat-hint>
       </mat-form-field>
 
       <mat-form-field floatLabel="always" appearance="outline">
         <mat-label>Кількість</mat-label>
-        <input matInput type="number" placeholder="0" min="0" formControlName="stock" required>
+        <input matInput type="number" placeholder="0" min="0" max="2000000000" formControlName="stock" required>
+        <mat-hint align="end">Макс. 2 000 000 000</mat-hint>
       </mat-form-field>
     </div>
 

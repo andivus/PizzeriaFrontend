@@ -1,0 +1,27 @@
+
+<p mat-dialog-title>{{data.name}}</p>
+
+<div class="content">
+  <div class="image">
+    <img src="{{data.imageUrl}}">
+    <div mat-dialog-content class="stockAndPrice">
+      В наявності: {{data.stock.toLocaleString()}}
+      <br>
+      Вартість: ₴ {{data.price.toLocaleString()}}
+    </div>
+  </div>
+  <div class="about">
+    <h1>Опис товару</h1>
+    <div mat-dialog-content class="description">
+      <p>{{data.description}}</p>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close>Закрити</button>
+
+  <button mat-raised-button color="primary" *ngIf="!_cartService.isInCart(data.id)" [disabled]="!data.isActive || data.stock == 0" (click)="_cartService.addOneToCart(data.id)">Додати в корзину</button>
+
+  <button mat-raised-button color="warn" *ngIf="_cartService.isInCart(data.id)" [disabled]="!data.isActive" (click)="_cartService.removeFullFromCart(data.id)">Прибрати з корзини</button>
+</div>
