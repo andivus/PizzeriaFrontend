@@ -1,7 +1,7 @@
 <div mat-dialog-title>Корзина</div>
 
 <div class="content" mat-dialog-content>
-  <mat-card class="card" *ngFor="let data of dataSource">
+  <mat-card class="card" *ngFor="let data of dataSource" style="{{!_cartService.isInCart(data.id) ? 'display: none' : ''}}">
     <mat-card-header>
       <mat-card-title-group>
         <img mat-card-sm-image src="{{data.imageUrl}}" (error)="_utilsService.handleImageError($event)">
@@ -19,7 +19,7 @@
             </b>
           </div>
           <div class="amount">
-            <button mat-icon-button (click)="_cartService.removeOneFromCart(data.id)" disabled="{{_cartService.getItemAmount(data.id) <= 1}}">
+            <button mat-icon-button (click)="_cartService.removeOneFromCart(data.id)"  disabled="{{_cartService.getItemAmount(data.id) <= 0}}">
               <mat-icon>remove</mat-icon>
             </button>
             <p>{{_cartService.getItemAmount(data.id)}}</p>

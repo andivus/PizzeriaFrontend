@@ -16,8 +16,9 @@ export class CartService {
 
   removeOneFromCart(itemId: number): void {
     const cart = this.getCart();
-    if (cart[itemId] == null || cart[itemId] == 1) return
-    else cart[itemId]--
+    if (cart[itemId] == null) return
+    if (cart[itemId] == 1) delete cart[itemId]
+    cart[itemId]--
     this.saveCart(cart);
   }
 
@@ -42,6 +43,18 @@ export class CartService {
   isInCart(itemId: number): boolean {
     const cart = this.getCart();
     return cart[itemId] != null
+  }
+
+  hasItems(): boolean {
+    const cart = this.getCart();
+    if (cart == null) return false
+    let i = 0
+    Object.keys(cart).forEach(id => {
+      if (cart[Number (id)] == 0 || cart[Number (id)] == null) i++
+    } )
+
+    return i != Object.keys(cart).length;
+
   }
 
   setToCart(itemId: number, amount: number) {

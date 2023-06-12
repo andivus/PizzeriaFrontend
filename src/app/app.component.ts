@@ -20,8 +20,7 @@ export class AppComponent {
   }
 
   openItemUserDialog(): void {
-    let cart = Object.keys(this._cartService.getCart())
-    if (cart.length == 0) {
+    if (!this._cartService.hasItems()) {
       this._snackBar.open("Корзина пуста!", 'Окей', {
         duration: 5000
       })
