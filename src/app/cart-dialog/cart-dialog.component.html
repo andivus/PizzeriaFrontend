@@ -1,6 +1,6 @@
 <div mat-dialog-title>Корзина</div>
 
-<div class="content">
+<div class="content" mat-dialog-content>
   <mat-card class="card" *ngFor="let data of dataSource">
     <mat-card-header>
       <mat-card-title-group>
@@ -30,6 +30,10 @@
         </div>
     </mat-card-content>
   </mat-card>
+</div>
+
+<div class="total" mat-dialog-content>
+  До сплати: ₴ {{this.getTotalPrice().toLocaleString()}}
 </div>
 
 <div mat-dialog-actions class="action">

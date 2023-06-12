@@ -57,4 +57,12 @@ export class CartDialogComponent {
     })
   }
 
+  getTotalPrice(): number {
+    let result = 0
+    this.dataSource.forEach(item => {
+      let cart = this._cartService.getCart()
+      result += cart[item.id]*item.price
+    })
+    return result
+  }
 }
