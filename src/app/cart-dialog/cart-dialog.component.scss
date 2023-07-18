@@ -32,7 +32,7 @@ img {
 
 }
 
-.content {
+.cards {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -40,7 +40,6 @@ img {
   justify-content: center;
   overflow-y: scroll;
   max-height: 70vh;
-  padding: 16px 0;
 }
 
 .total {
@@ -48,3 +47,24 @@ img {
   font-size: large;
 }
 
+.row {
+  display: flex;
+  gap: 10px;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  textarea {
+    min-height: 32px;
+  }
+}
+
+.content {
+  display: flex;
+
+  .cards, .form {
+    width: 50%;
+    padding: 16px;
+  }
+}

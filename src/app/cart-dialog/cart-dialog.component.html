@@ -1,42 +1,92 @@
 <div mat-dialog-title>Корзина</div>
+<form>
+  <div class="content">
+    <div class="cards" mat-dialog-content>
+      <mat-card class="card" *ngFor="let data of dataSource" style="{{!_cartService.isInCart(data.id) ? 'display: none' : ''}}">
+        <mat-card-header>
+          <mat-card-title-group>
+            <img mat-card-sm-image src="{{data.imageUrl}}" (error)="_utilsService.handleImageError($event)">
+            <mat-card-title class="title">{{data.name}}</mat-card-title>
+            <mat-card-subtitle>Small</mat-card-subtitle>
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="bottom">
+              <div class="price">
+                За 1 одиницю: ₴ {{data.price.toLocaleString()}}
+                <br>
+                <b>
+                  Всього: ₴ {{(data.price*_cartService.getItemAmount(data.id)).toLocaleString()}}
+                </b>
+              </div>
+              <div class="amount">
+                <button mat-icon-button (click)="_cartService.removeOneFromCart(data.id)"  disabled="{{_cartService.getItemAmount(data.id) <= 0}}">
+                  <mat-icon>remove</mat-icon>
+                </button>
+                <p>{{_cartService.getItemAmount(data.id)}}</p>
+                <button mat-icon-button (click)="_cartService.addOneToCart(data.id)" disabled="{{_cartService.getItemAmount(data.id) >= data.stock}}">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+            </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
 
-<div class="content" mat-dialog-content>
-  <mat-card class="card" *ngFor="let data of dataSource" style="{{!_cartService.isInCart(data.id) ? 'display: none' : ''}}">
-    <mat-card-header>
-      <mat-card-title-group>
-        <img mat-card-sm-image src="{{data.imageUrl}}" (error)="_utilsService.handleImageError($event)">
-        <mat-card-title class="title">{{data.name}}</mat-card-title>
-        <mat-card-subtitle>Small</mat-card-subtitle>
-      </mat-card-title-group>
-    </mat-card-header>
-    <mat-card-content>
-        <div class="bottom">
-          <div class="price">
-            За 1 одиницю: ₴ {{data.price.toLocaleString()}}
-            <br>
-            <b>
-              Всього: ₴ {{(data.price*_cartService.getItemAmount(data.id)).toLocaleString()}}
-            </b>
-          </div>
-          <div class="amount">
-            <button mat-icon-button (click)="_cartService.removeOneFromCart(data.id)"  disabled="{{_cartService.getItemAmount(data.id) <= 0}}">
-              <mat-icon>remove</mat-icon>
-            </button>
-            <p>{{_cartService.getItemAmount(data.id)}}</p>
-            <button mat-icon-button (click)="_cartService.addOneToCart(data.id)" disabled="{{_cartService.getItemAmount(data.id) >= data.stock}}">
-              <mat-icon>add</mat-icon>
-            </button>
-          </div>
-        </div>
-    </mat-card-content>
-  </mat-card>
-</div>
+    <div class="form">
+      <div class="row">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>FirstName</mat-label>
+          <input matInput type="text" placeholder="FirstName" formControlName="firstName" required>
+        </mat-form-field>
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>SecondName</mat-label>
+          <input matInput type="text" placeholder="SecondName" formControlName="secondName" required>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>phone</mat-label>
+          <span matTextPrefix>+380&nbsp;</span>
+          <input matInput type="tel" placeholder="phone" formControlName="phone" required pattern="[0-9]{9}" maxlength="9">
+        </mat-form-field>
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>email</mat-label>
+          <input matInput type="email" placeholder="andriy@mail.ua" formControlName="email" required>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>city</mat-label>
+          <input matInput type="text" placeholder="city" formControlName="city" required>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>firstAddress</mat-label>
+          <input matInput type="text" placeholder="firstAddress" formControlName="firstAddress" required>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>secondAddress</mat-label>
+          <input matInput type="text" placeholder="secondAddress" formControlName="secondAddress" required>
+        </mat-form-field>
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>zipCode</mat-label>
+          <input matInput type="text" placeholder="zipCode" formControlName="zipCode" required>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
 
-<div class="total" mat-dialog-content>
-  До сплати: ₴ {{this.getTotalPrice().toLocaleString()}}
-</div>
+  <div class="total" mat-dialog-content>
+    До сплати: ₴ {{this.getTotalPrice().toLocaleString()}}
+  </div>
 
-<div mat-dialog-actions class="action">
-  <button mat-raised-button mat-dialog-close type="button">Закрити</button>
-  <button mat-raised-button color="primary" type="submit">Оформити замовлення</button>
-</div>
+  <div mat-dialog-actions class="action">
+    <button mat-raised-button mat-dialog-close type="button">Закрити</button>
+    <button mat-raised-button color="primary" type="submit">Оформити замовлення</button>
+  </div>
+
+</form>
