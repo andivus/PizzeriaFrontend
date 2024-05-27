@@ -20,11 +20,11 @@
                 </b>
               </div>
               <div class="amount">
-                <button mat-icon-button (click)="_cartService.removeOneFromCart(data.id)"  disabled="{{_cartService.getItemAmount(data.id) <= 0}}">
+                <button mat-icon-button (click)="_cartService.removeOneFromCart(data.id)" disabled="{{_cartService.getItemAmount(data.id) <= 0}}" type="button">
                   <mat-icon>remove</mat-icon>
                 </button>
                 <p>{{_cartService.getItemAmount(data.id)}}</p>
-                <button mat-icon-button (click)="_cartService.addOneToCart(data.id)" disabled="{{_cartService.getItemAmount(data.id) >= data.stock}}">
+                <button mat-icon-button (click)="_cartService.addOneToCart(data.id)" disabled="{{_cartService.getItemAmount(data.id) >= data.stock}}" type="button">
                   <mat-icon>add</mat-icon>
                 </button>
               </div>
@@ -33,7 +33,7 @@
       </mat-card>
     </div>
 
-    <div class="form">
+    <div class="form" [formGroup]="myGroup">
       <div class="row">
         <mat-form-field floatLabel="always" appearance="outline">
           <mat-label>FirstName</mat-label>
@@ -41,7 +41,7 @@
         </mat-form-field>
         <mat-form-field floatLabel="always" appearance="outline">
           <mat-label>SecondName</mat-label>
-          <input matInput type="text" placeholder="SecondName" formControlName="secondName" required>
+          <input matInput type="text" placeholder="Пр" formControlName="secondName" required>
         </mat-form-field>
       </div>
       <div class="row">
@@ -65,16 +65,6 @@
         <mat-form-field floatLabel="always" appearance="outline">
           <mat-label>firstAddress</mat-label>
           <input matInput type="text" placeholder="firstAddress" formControlName="firstAddress" required>
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field floatLabel="always" appearance="outline">
-          <mat-label>secondAddress</mat-label>
-          <input matInput type="text" placeholder="secondAddress" formControlName="secondAddress" required>
-        </mat-form-field>
-        <mat-form-field floatLabel="always" appearance="outline">
-          <mat-label>zipCode</mat-label>
-          <input matInput type="text" placeholder="zipCode" formControlName="zipCode" required>
         </mat-form-field>
       </div>
     </div>

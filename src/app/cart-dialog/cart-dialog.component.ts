@@ -6,6 +6,7 @@ import {ItemService} from "../service/item.service";
 import {toNumbers} from "@angular/compiler-cli/src/version_helpers";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {UtilsService} from "../service/utils.service";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-cart-dialog',
@@ -15,6 +16,15 @@ import {UtilsService} from "../service/utils.service";
 export class CartDialogComponent {
 
   dataSource!: Array<ItemDTO>;
+
+myGroup = new FormGroup({
+  firstName: new FormControl(),
+  secondName: new FormControl(),
+  phone: new FormControl(),
+  email: new FormControl(),
+  city: new FormControl(),
+  firstAddress: new FormControl(),
+});
 
   ngOnInit(): void {
     this.getItemList()
