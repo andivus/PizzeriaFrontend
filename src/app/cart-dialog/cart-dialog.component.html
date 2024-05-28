@@ -1,5 +1,5 @@
 <div mat-dialog-title>Корзина</div>
-<form>
+<form [formGroup]="cartForm">
   <div class="content">
     <div class="cards" mat-dialog-content>
       <mat-card class="card" *ngFor="let data of dataSource" style="{{!_cartService.isInCart(data.id) ? 'display: none' : ''}}">
@@ -33,38 +33,34 @@
       </mat-card>
     </div>
 
-    <div class="form" [formGroup]="myGroup">
+    <div class="form">
       <div class="row">
         <mat-form-field floatLabel="always" appearance="outline">
-          <mat-label>FirstName</mat-label>
-          <input matInput type="text" placeholder="FirstName" formControlName="firstName" required>
+          <mat-label>Ім'я</mat-label>
+          <input matInput type="text" placeholder="Андрій" formControlName="firstName" required>
         </mat-form-field>
         <mat-form-field floatLabel="always" appearance="outline">
-          <mat-label>SecondName</mat-label>
-          <input matInput type="text" placeholder="Пр" formControlName="secondName" required>
+          <mat-label>Номер телефону</mat-label>
+          <span matTextPrefix>+380&nbsp;</span>
+          <input matInput type="tel" placeholder="6712312312" formControlName="phone" required pattern="[0-9]{9}" maxlength="9">
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field floatLabel="always" appearance="outline">
-          <mat-label>phone</mat-label>
-          <span matTextPrefix>+380&nbsp;</span>
-          <input matInput type="tel" placeholder="phone" formControlName="phone" required pattern="[0-9]{9}" maxlength="9">
-        </mat-form-field>
-        <mat-form-field floatLabel="always" appearance="outline">
-          <mat-label>email</mat-label>
+          <mat-label>Пошта</mat-label>
           <input matInput type="email" placeholder="andriy@mail.ua" formControlName="email" required>
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field floatLabel="always" appearance="outline">
           <mat-label>city</mat-label>
-          <input matInput type="text" placeholder="city" formControlName="city" required>
+          <input matInput type="text" placeholder="Київ" formControlName="city" required>
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field floatLabel="always" appearance="outline">
-          <mat-label>firstAddress</mat-label>
-          <input matInput type="text" placeholder="firstAddress" formControlName="firstAddress" required>
+          <mat-label>Адреса</mat-label>
+          <input matInput type="text" placeholder="вул. Шевченка 1" formControlName="firstAddress" required>
         </mat-form-field>
       </div>
     </div>
@@ -76,7 +72,7 @@
 
   <div mat-dialog-actions class="action">
     <button mat-raised-button mat-dialog-close type="button">Закрити</button>
-    <button mat-raised-button color="primary" type="submit">Оформити замовлення</button>
+    <button mat-raised-button color="primary" type="submit" (click)="onSubmitClick()">Оформити замовлення</button>
   </div>
 
 </form>

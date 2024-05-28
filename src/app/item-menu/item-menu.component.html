@@ -2,14 +2,14 @@
   <div *ngFor="let data of dataSource">
     <mat-card class="card">
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
+        <div mat-card-avatar class="example-header-image" [ngStyle]="{'filter': (data.stock == 0) ? 'grayscale(100%)' : 'none'}"></div>
         <mat-card-title class="card-header">{{ data.name }}</mat-card-title>
         <mat-card-subtitle>
           #{{ data.id }} | {{ data.stock == 0 ? "Наразі цей товар відсутній! 😦" :
           data.stock <= 3 ? 'Закінчується! В наявності: ' + data.stock : 'В наявності: ' + data.stock.toLocaleString() }}
         </mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src='{{data.imageUrl}}' alt="" (error)="_utilsService.handleImageError($event)">
+      <img [ngStyle]="{'filter': (data.stock == 0) ? 'grayscale(100%)' : 'none'}" mat-card-image src='{{data.imageUrl}}' alt="" (error)="_utilsService.handleImageError($event)">
       <mat-card-content>
         <p class="description">
           {{data.description}}

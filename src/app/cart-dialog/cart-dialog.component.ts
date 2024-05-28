@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
 import {CartService} from "../service/cart.service";
 import ItemDTO from "../model/item-dto";
 import {ItemService} from "../service/item.service";
-import {toNumbers} from "@angular/compiler-cli/src/version_helpers";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {UtilsService} from "../service/utils.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import OrderDTO, {CreateOrderDTO, StatusType} from "../model/order-dto";
 
 @Component({
   selector: 'app-cart-dialog',
@@ -17,9 +17,8 @@ export class CartDialogComponent {
 
   dataSource!: Array<ItemDTO>;
 
-myGroup = new FormGroup({
+  cartForm = new FormGroup({
   firstName: new FormControl(),
-  secondName: new FormControl(),
   phone: new FormControl(),
   email: new FormControl(),
   city: new FormControl(),
@@ -74,5 +73,51 @@ myGroup = new FormGroup({
       result += cart[item.id]*item.price
     })
     return result
+  }
+
+  onSubmitClick(): void {
+
+    if (!this.cartForm.valid ||
+      this.cartForm.value.firstName == null ||
+      this.cartForm.value.phone == null ||
+      this.cartForm.value.email == null ||
+      this.cartForm.value.city == null ||
+      this.cartForm.value.firstAddress == null
+    ) {
+      this._snackBar.open('Халепа! Перевірте правильність введених даних', 'Окей', {
+        duration: 5000
+      });
+      return;
+    }
+
+    let order: CreateOrderDTO = {
+      firstName: this.cartForm.value.firstName,
+      phone: this.cartForm.value.phone,
+      email: this.cartForm.value.email,
+      city: this.cartForm.value.city,
+      firstAddress: this.cartForm.value.firstAddress,
+      cart: this._cartService.getCart(),
+    }
+
+      this._cartService.createOrder(order).subscribe({
+        next: (val: OrderDTO) => {
+          this.dialogRef.close(true);
+          this._snackBar.open(`Замовлення успішно оформлено!`, 'Окей', {
+            duration: 5000
+          });
+        },
+        error: (val: StatusType) => {
+          let status = "Інше"
+          if (val == StatusType.NO_ENOUGH_ITEMS) status = "Недостатньо інгридієнтів"
+          if (val == StatusType.ITEM_NOT_FOUND) status = "Товар з вашої корзини не знайдено"
+          if (val == StatusType.CART_IS_EMPTY) status = "Корзина пуста"
+          this._snackBar.open(`Виникла помилка при оформленні замовлення: ${status}`, 'Окей', {
+            duration: 60000
+          });
+          console.error(val)
+        }
+      })
+      return;
+
   }
 }

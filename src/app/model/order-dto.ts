@@ -2,15 +2,25 @@ export default interface OrderDTO {
   uuid: string;
   purchaseDate: Date;
   firstName: string;
-  lastName: string;
   email: string;
   phone: number;
   city: string;
-  zipCode: number;
   firstAddress: string;
-  secondAddress?: string;
   totalPrice: number;
   status: string;
-  userIp?: string;
-  userAgent?: string;
+}
+
+export interface CreateOrderDTO {
+  firstName: string;
+  email: string;
+  phone: number;
+  city: string;
+  firstAddress: string;
+  cart: { [itemId: number]: number };
+}
+
+export enum StatusType {
+  ITEM_NOT_FOUND = "ITEM_NOT_FOUND",
+  NO_ENOUGH_ITEMS = "NO_ENOUGH_ITEMS",
+  CART_IS_EMPTY = "CART_IS_EMPTY"
 }

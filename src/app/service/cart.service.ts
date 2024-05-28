@@ -1,11 +1,23 @@
 import { Injectable } from "@angular/core";
+import {Observable} from "rxjs";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {environment} from "../../environments/environment";
+import {CreateOrderDTO} from "../model/order-dto";
 
 @Injectable({
   providedIn: "root"
 })
 export class CartService {
 
-  constructor() {}
+  constructor(
+    private _http: HttpClient
+  ) { }
+
+  urlString = `${environment.apiUrl}/orders`
+
+  headers = {
+    headers: new HttpHeaders().set('Content-Type', 'application/json')
+  }
 
   addOneToCart(itemId: number): void {
     const cart = this.getCart();
@@ -65,5 +77,9 @@ export class CartService {
 
   private saveCart(cart: { [itemId: number]: number }): void {
     sessionStorage.setItem('cart', JSON.stringify(cart));
+  }
+
+  createOrder(request: CreateOrderDTO): Observable<any> {
+    return this._http.post(this.urlString, request, this.headers)
   }
 }
