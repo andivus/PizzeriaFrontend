@@ -25,6 +25,8 @@ import { ItemUserDialogComponent } from './item-user-dialog/item-user-dialog.com
 import { ItemMenuComponent } from './item-menu/item-menu.component';
 import {MatCardModule} from "@angular/material/card";
 import { CartDialogComponent } from './cart-dialog/cart-dialog.component';
+import {OrdersComponent} from "./orders/orders.component";
+import {OrderInfoDialogComponent} from "./order-info-dialog/order-info.component";
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { CartDialogComponent } from './cart-dialog/cart-dialog.component';
     ItemAdminPageComponent,
     ItemUserDialogComponent,
     ItemMenuComponent,
-    CartDialogComponent
+    CartDialogComponent,
+    OrdersComponent,
+    OrderInfoDialogComponent
   ],
   imports: [
     BrowserModule,

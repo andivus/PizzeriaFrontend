@@ -1,6 +1,6 @@
 export default interface OrderDTO {
   uuid: string;
-  purchaseDate: Date;
+  purchaseDate: string;
   firstName: string;
   email: string;
   phone: number;
@@ -8,6 +8,15 @@ export default interface OrderDTO {
   firstAddress: string;
   totalPrice: number;
   status: string;
+}
+
+export interface CreateOrderDTO {
+  firstName: string;
+  email: string;
+  phone: number;
+  city: string;
+  firstAddress: string;
+  cart: { [itemId: number]: number };
 }
 
 export interface CreateOrderDTO {

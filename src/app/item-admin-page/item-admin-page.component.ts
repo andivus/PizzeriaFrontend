@@ -18,7 +18,7 @@ import {UtilsService} from "../service/utils.service";
 export class ItemAdminPageComponent {
 
   displayedColumns: string[] = ['id', 'image', 'name', 'price', 'stock', 'isActive', 'editButtons'];
-  dataSource!: MatTableDataSource<any>;
+  dataSource!: MatTableDataSource<ItemDTO>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -74,7 +74,7 @@ export class ItemAdminPageComponent {
     this._itemService.getItems().subscribe({
       next: (val: Array<ItemDTO>) => {
         val.sort((a, b) => a.id - b.id)
-        this.dataSource = new MatTableDataSource<any>(val)
+        this.dataSource = new MatTableDataSource<ItemDTO>(val)
         this.dataSource.sort = this.sort
         this.dataSource.paginator = this.paginator
       },
