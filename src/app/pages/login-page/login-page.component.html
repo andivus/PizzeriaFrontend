@@ -1,0 +1,24 @@
+<div class="content">
+  <h1 mat-dialog-title>Форма входу</h1>
+  <form [formGroup]="loginForm">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Логін</mat-label>
+        <input matInput formControlName="login" placeholder="admin">
+        <mat-icon matSuffix>face</mat-icon>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Пароль</mat-label>
+        <input matInput type="password" formControlName="password" placeholder="admin">
+        <mat-icon matSuffix>password</mat-icon>
+      </mat-form-field>
+    </p>
+    <p>
+      <button mat-flat-button color="primary" type="submit" (click)="onSubmit()">Увійти</button>
+    </p>
+  </form>
+</div>
+
+

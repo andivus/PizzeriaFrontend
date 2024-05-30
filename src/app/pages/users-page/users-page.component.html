@@ -1,0 +1,63 @@
+<div class="content">
+    <mat-form-field>
+        <mat-label>Пошук</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Тарас " #input>
+    </mat-form-field>
+
+    <div class="mat-elevation-z8 table">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="uuid">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                <td mat-cell *matCellDef="let row"> {{row.uuid}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="username">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Логін</th>
+                <td mat-cell *matCellDef="let row"> {{row.username}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Пошта</th>
+                <td mat-cell *matCellDef="let row"> {{ row.email }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="firstName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Ім'я</th>
+                <td mat-cell *matCellDef="let row"> {{row.firstName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="secondName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Прізвище</th>
+                <td mat-cell *matCellDef="let row">{{ row.secondName }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="editButtons" stickyEnd>
+                <th mat-header-cell *matHeaderCellDef aria-label="row actions">Взаємодія</th>
+                <td mat-cell *matCellDef="let row">
+                    <button mat-icon-button [routerLink]="['/users', row.uuid]">
+                        <mat-icon color="accent">preview</mat-icon>
+                    </button>
+                    <button mat-icon-button color="primary" (click)="openEditDialog(row)">
+                        <mat-icon color="primary">edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="primary" (click)="onDeleteClick(row.id, row.username)">
+                        <mat-icon color="warn">delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">Нічого не знайдено згідно запиту: {{input.value}}</td>
+            </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    </div>
+
+    <button mat-raised-button (click)="openAddDialog()">Створити користувача</button>
+</div>
