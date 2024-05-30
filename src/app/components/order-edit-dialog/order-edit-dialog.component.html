@@ -1,0 +1,57 @@
+<div mat-dialog-title>{{ "Редагування замовлення" }}</div>
+
+
+<form [formGroup]="orderForm">
+  <div mat-dialog-content class="content">
+    <div class="form">
+      <div class="row">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>Ім'я</mat-label>
+          <input matInput type="text" placeholder="Андрій" formControlName="firstName" required>
+        </mat-form-field>
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>Номер телефону</mat-label>
+          <span matTextPrefix>+380&nbsp;</span>
+          <input matInput type="tel" placeholder="6712312312" formControlName="phone" required pattern="[0-9]{9}" maxlength="9">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>Пошта</mat-label>
+          <input matInput type="email" placeholder="andriy@mail.ua" formControlName="email" required>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>city</mat-label>
+          <input matInput type="text" placeholder="Київ" formControlName="city" required>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>Адреса</mat-label>
+          <input matInput type="text" placeholder="вул. Шевченка 1" formControlName="firstAddress" required>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field>
+          <mat-label>Статус</mat-label>
+          <select matNativeControl required formControlName="status">
+            <option value="UNPAID">Очікує оплати</option>
+            <option value="PAID">Оплачене</option>
+            <option value="CANCELED">Скасоване</option>
+            <option value="DONE">Виконане</option>
+            <option value="PROCESSING">Оброблюється</option>
+          </select>
+        </mat-form-field>
+
+      </div>
+    </div>
+  </div>
+
+  <div mat-dialog-actions class="action">
+    <button mat-raised-button (click)="onNoClick()" type="button">Скасувати</button>
+    <button mat-raised-button color="primary" type="submit" (click)="onSubmitClick()">Зберегти</button>
+  </div>
+
+</form>

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import ItemDTO from "../model/item-dto";
-import {ItemService} from "../service/item.service";
+import ItemDTO from "../../model/item-dto";
+import {ItemService} from "../../service/item.service";
 import {ItemUserDialogComponent} from "../item-user-dialog/item-user-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
-import {CartService} from "../service/cart.service";
-import {UtilsService} from "../service/utils.service";
+import {CartService} from "../../service/cart.service";
+import {UtilsService} from "../../service/utils.service";
 
 @Component({
   selector: 'app-item-menu',

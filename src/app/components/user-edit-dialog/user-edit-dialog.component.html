@@ -1,0 +1,45 @@
+<div mat-dialog-title>{{ data ? "Редагування користувача" : "Створення користувача" }}</div>
+
+
+<form [formGroup]="userForm">
+  <div mat-dialog-content class="content">
+    <div class="row">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>Логін</mat-label>
+        <input matInput #name maxlength="16" type="text" placeholder="user" formControlName="username" required>
+        <mat-hint align="end">{{name.value.length}}/16</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>Ім'я</mat-label>
+        <input matInput #firstName maxlength="64" type="text" placeholder="Тарас" formControlName="firstName" required>
+        <mat-hint align="end">{{firstName.value.length}}/64</mat-hint>
+      </mat-form-field>
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>Прізвище</mat-label>
+        <input matInput #secondName maxlength="64" type="text" placeholder="Шевченко" formControlName="secondName" required>
+        <mat-hint align="end">{{secondName.value.length}}/64</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>Пошта</mat-label>
+        <input matInput #email maxlength="64" type="text" placeholder="user@pizzeria.com" formControlName="email" required>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>Новий пароль</mat-label>
+        <input matInput #password maxlength="24" type="password" placeholder="Pa$$w0rd" formControlName="password" [required]="data == null">
+        <mat-hint align="end">{{password.value.length}}/24</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div mat-dialog-actions class="action">
+    <button mat-raised-button (click)="onNoClick()" type="button">Скасувати</button>
+    <button mat-raised-button color="primary" type="submit" (click)="onSubmitClick()">Зберегти</button>
+  </div>
+
+</form>

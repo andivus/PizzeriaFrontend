@@ -1,11 +1,14 @@
 <mat-toolbar color="primary">
 
-  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Icon-button with a menu">
+  <button
+    mat-icon-button aria-label="Icon-button with a menu"
+    [matMenuTriggerFor]="menu" [ngStyle]="{'display': (!isAuthenticated) ? 'none' : 'block'}"
+  >
     <mat-icon>menu</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
 
-    <a mat-menu-item routerLink="/items">
+    <a mat-menu-item routerLink="/">
       <mat-icon>menu_book</mat-icon>
       <span>Меню</span>
     </a>
@@ -17,11 +20,16 @@
 
     <a mat-menu-item routerLink="/admin/orders">
       <mat-icon>list_alt</mat-icon>
-      <span>Замовлення</span>
+      <span>Обробка замовлень</span>
+    </a>
+
+    <a mat-menu-item routerLink="/admin/users">
+      <mat-icon>group</mat-icon>
+      <span>Користувачі</span>
     </a>
   </mat-menu>
 
-  <span>Pizzeria</span>
+  <a style="text-decoration: none; color: white" routerLink="/">Pizzeria</a>
 
   <span class="spacer"></span>
 
@@ -29,9 +37,24 @@
     <mat-icon>shopping_cart</mat-icon>
   </button>
 
-  <button mat-icon-button aria-label="User icon">
+  <button mat-icon-button aria-label="User icon" [ngStyle]="{'display': (isAuthenticated) ? 'none' : 'block'}" routerLink="/login">
     <mat-icon>account_circle</mat-icon>
   </button>
+
+  <button mat-icon-button aria-label="User icon" [ngStyle]="{'display': (!isAuthenticated) ? 'none' : 'block'}" [matMenuTriggerFor]="userMenu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+
+  <mat-menu #userMenu="matMenu">
+    <a mat-menu-item [routerLink]="['/users', userDTO?.uuid]">
+      <mat-icon>face</mat-icon>
+      {{userDTO?.firstName + " " + userDTO?.secondName}}
+    </a>
+    <a mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Вихід</span>
+    </a>
+  </mat-menu>
 
 </mat-toolbar>
 

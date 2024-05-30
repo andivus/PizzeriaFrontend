@@ -1,8 +1,8 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ItemAddEditDialogComponent} from "../item-add-edit-dialog/item-add-edit-dialog.component";
-import {CartService} from "../service/cart.service";
-import {UtilsService} from "../service/utils.service";
+import {CartService} from "../../service/cart.service";
+import {UtilsService} from "../../service/utils.service";
 
 @Component({
   selector: 'app-item-user-dialog',

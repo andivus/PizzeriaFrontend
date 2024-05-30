@@ -1,19 +1,19 @@
 import {Component} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
-import {CartService} from "../service/cart.service";
-import ItemDTO from "../model/item-dto";
-import {ItemService} from "../service/item.service";
+import {CartService} from "../../service/cart.service";
+import ItemDTO from "../../model/item-dto";
+import {ItemService} from "../../service/item.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {UtilsService} from "../service/utils.service";
+import {UtilsService} from "../../service/utils.service";
 import {FormControl, FormGroup} from "@angular/forms";
-import OrderDTO, {CreateOrderDTO, StatusType} from "../model/order-dto";
+import OrderDTO, {CreateOrderRequest, StatusType} from "../../model/order-dto";
 
 @Component({
-  selector: 'app-cart-dialog',
-  templateUrl: './cart-dialog.component.html',
-  styleUrls: ['./cart-dialog.component.scss']
+  selector: 'app-order-info',
+  templateUrl: './order-info.component.html',
+  styleUrls: ['./order-info.component.scss']
 })
-export class CartDialogComponent {
+export class OrderInfoDialogComponent {
 
   dataSource!: Array<ItemDTO>;
 
@@ -31,7 +31,7 @@ export class CartDialogComponent {
   }
 
   constructor(
-    public dialogRef: MatDialogRef<CartDialogComponent>,
+    public dialogRef: MatDialogRef<OrderInfoDialogComponent>,
     public _cartService: CartService,
     public _itemService: ItemService,
     private _snackBar: MatSnackBar,
@@ -90,7 +90,7 @@ export class CartDialogComponent {
       return;
     }
 
-    let order: CreateOrderDTO = {
+    let order: CreateOrderRequest = {
       firstName: this.cartForm.value.firstName,
       phone: this.cartForm.value.phone,
       email: this.cartForm.value.email,

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {CreateOrderDTO} from "../model/order-dto";
+import {CreateOrderRequest} from "../model/order-dto";
 
 @Injectable({
   providedIn: "root"
@@ -15,8 +15,14 @@ export class CartService {
 
   urlString = `${environment.apiUrl}/orders`
 
-  headers = {
-    headers: new HttpHeaders().set('Content-Type', 'application/json')
+  token = () => {
+    return sessionStorage.getItem("token")
+  }
+
+  headers = () => {
+    return {
+      headers: new HttpHeaders().set('Content-Type', 'application/json').set("Authorization", this.token() ? `Bearer ${this.token()}` : "")
+    }
   }
 
   addOneToCart(itemId: number): void {
@@ -79,7 +85,7 @@ export class CartService {
     sessionStorage.setItem('cart', JSON.stringify(cart));
   }
 
-  createOrder(request: CreateOrderDTO): Observable<any> {
-    return this._http.post(this.urlString, request, this.headers)
+  createOrder(request: CreateOrderRequest): Observable<any> {
+    return this._http.post(this.urlString, request, this.headers())
   }
 }

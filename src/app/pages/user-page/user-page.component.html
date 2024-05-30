@@ -1,0 +1,30 @@
+<div class="content">
+  <div class="info">
+    <h1>Профіль користувача</h1>
+
+    <div>
+      <b>Ідентифікатор користувача</b>
+      <span>{{ userDTO?.uuid }}</span>
+    </div>
+
+    <div>
+      <b>Логін</b>
+      <span>{{ userDTO?.username }}</span>
+    </div>
+
+    <div>
+      <b>Ім'я та Прізвище</b>
+      <span>{{ userDTO?.firstName }} {{ userDTO?.secondName }}</span>
+    </div>
+
+    <div>
+      <b>Пошта</b>
+      <span>{{ userDTO?.email }}</span>
+    </div>
+
+    <div class="mat-button-base">
+      <button mat-flat-button color="primary" (click)="openEditDialog(userDTO)">Редагувати дані</button>
+    </div>
+  </div>
+
+</div>

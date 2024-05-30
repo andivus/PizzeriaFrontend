@@ -12,28 +12,33 @@ export class ItemService {
   ) { }
 
   urlString = `${environment.apiUrl}/items`
+  token = () => {
+    return sessionStorage.getItem("token")
+  }
 
-  headers = {
-    headers: new HttpHeaders().set('Content-Type', 'application/json')
+  headers = () => {
+    return {
+      headers: new HttpHeaders().set('Content-Type', 'application/json').set("Authorization", this.token() ? `Bearer ${this.token()}` : "")
+    }
   }
 
   getItems(): Observable<any> {
-    return this._http.get(this.urlString, this.headers)
+    return this._http.get(this.urlString, this.headers())
   }
 
   createItem(request: any): Observable<any> {
-    return this._http.post(this.urlString, request, this.headers)
+    return this._http.post(this.urlString, request, this.headers())
   }
 
   getItem(id: number): Observable<any> {
-    return this._http.get(this.urlString + `/${id}`, this.headers)
+    return this._http.get(this.urlString + `/${id}`, this.headers())
   }
 
   removeItem(id: number): Observable<any> {
-    return this._http.delete(this.urlString + `/${id}`, this.headers)
+    return this._http.delete(this.urlString + `/${id}`, this.headers())
   }
 
   updateItem(id: number, request: any): Observable<any> {
-    return this._http.put(this.urlString + `/${id}`, request, this.headers)
+    return this._http.put(this.urlString + `/${id}`, request, this.headers())
   }
 }

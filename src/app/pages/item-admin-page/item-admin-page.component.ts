@@ -1,14 +1,14 @@
 import {Component, ViewChild} from '@angular/core';
-import {ItemAddEditDialogComponent} from "../item-add-edit-dialog/item-add-edit-dialog.component";
-import ItemDTO from "../model/item-dto";
+import {ItemAddEditDialogComponent} from "../../components/item-add-edit-dialog/item-add-edit-dialog.component";
+import ItemDTO from "../../model/item-dto";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatDialog} from "@angular/material/dialog";
-import {ItemService} from "../service/item.service";
+import {ItemService} from "../../service/item.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {ItemUserDialogComponent} from "../item-user-dialog/item-user-dialog.component";
-import {UtilsService} from "../service/utils.service";
+import {ItemUserDialogComponent} from "../../components/item-user-dialog/item-user-dialog.component";
+import {UtilsService} from "../../service/utils.service";
 
 @Component({
   selector: 'app-item-admin-page',
