@@ -16,7 +16,7 @@ export class CartService {
   urlString = `${environment.apiUrl}/orders`
 
   token = () => {
-    return sessionStorage.getItem("token")
+    return localStorage.getItem("token")
   }
 
   headers = () => {
@@ -48,7 +48,7 @@ export class CartService {
   }
 
   getCart(): { [itemId: number]: number } {
-    const cartString = sessionStorage.getItem('cart');
+    const cartString = localStorage.getItem('cart');
     return cartString ? JSON.parse(cartString) : {};
   }
 
@@ -82,7 +82,7 @@ export class CartService {
   }
 
   private saveCart(cart: { [itemId: number]: number }): void {
-    sessionStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('cart', JSON.stringify(cart));
   }
 
   createOrder(request: CreateOrderRequest): Observable<any> {

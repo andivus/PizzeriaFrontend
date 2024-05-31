@@ -45,7 +45,7 @@ export class LoginPageComponent {
       return
     }
 
-    sessionStorage.setItem("token", loginResponse.token)
+    localStorage.setItem("token", loginResponse.token)
 
     this._dataSharingService.isUserLoggedIn.next(true)
     this._dataSharingService.userDTO.next(loginResponse.userDTO)

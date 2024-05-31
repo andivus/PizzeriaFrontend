@@ -17,12 +17,12 @@ export class AuthGuard {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ) : boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    if (sessionStorage.getItem("token") == null) return false
+    if (localStorage.getItem("token") == null) return false
 
     let tokenResponse = this._userService.isTokenValid()
 
     if (tokenResponse == null) {
-      sessionStorage.removeItem("token")
+      localStorage.removeItem("token")
       return false
     }
 

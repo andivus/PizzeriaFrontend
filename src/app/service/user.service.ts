@@ -23,7 +23,7 @@ export class UserService {
   sessionUrlString = `${environment.apiUrl}/session`
 
   token = () => {
-    return sessionStorage.getItem("token")
+    return localStorage.getItem("token")
   }
 
   headers = () => {

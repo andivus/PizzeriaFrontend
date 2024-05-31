@@ -60,7 +60,7 @@ export class AppComponent {
 
   async logout() {
     this._userService.logout().then(r => {
-      sessionStorage.removeItem("token")
+      localStorage.removeItem("token")
       this._dataSharingService.isUserLoggedIn.next(false)
       this._router.navigateByUrl('/')
       this.userDTO = null

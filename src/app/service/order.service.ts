@@ -16,7 +16,7 @@ export class OrderService {
 
   private urlString = `${environment.apiUrl}/orders`
   private token = () => {
-    return sessionStorage.getItem("token")
+    return localStorage.getItem("token")
   }
 
   private headers = () => {

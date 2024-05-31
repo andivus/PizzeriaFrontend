@@ -13,7 +13,7 @@ export class ItemService {
 
   urlString = `${environment.apiUrl}/items`
   token = () => {
-    return sessionStorage.getItem("token")
+    return localStorage.getItem("token")
   }
 
   headers = () => {

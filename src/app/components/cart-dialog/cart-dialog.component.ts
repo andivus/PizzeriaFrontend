@@ -105,7 +105,7 @@ export class CartDialogComponent {
           this._snackBar.open(`Замовлення успішно оформлено!`, 'Окей', {
             duration: 5000
           });
-          sessionStorage.removeItem("cart")
+          localStorage.removeItem("cart")
         },
         error: (val: StatusType) => {
           let status = "Інше"
