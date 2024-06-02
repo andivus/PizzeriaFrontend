@@ -1,4 +1,4 @@
-FROM node:22-alpine as build
+FROM node:22-alpine
 
 WORKDIR /app
 
@@ -8,10 +8,6 @@ RUN npm install -g @angular/cli
 
 RUN npm install
 
-RUN ng build --configuration=production
+EXPOSE 4200
 
-FROM nginx:latest
-
-COPY --from=build app/dist/pizzeria /usr/share/nginx/html
-
-EXPOSE 80
+CMD ["ng", "serve", "--host", "0.0.0.0"]
